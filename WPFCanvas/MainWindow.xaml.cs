@@ -87,15 +87,20 @@ namespace WPFCanvas
         //}
         private Boolean IsMoving = false;
         private Image? MovingImage = null;
+        private Point PosDiff = new Point(0, 0); //사진을 중앙이 아닌 다른 쪽을 눌렀을때 차이로 이용하여 움직이게 하게 하기 위한 dx, dy를 구할 때 사용하는 변수
         private void OnMouseMove(object sender, MouseEventArgs e)
         {
            if(!IsMoving) return;
+
+            Point p = new Point(
+                 e.GetPosition(this).X + Center.RADIUS - PosDiff.X,
+                 e.GetPosition(this).Y + Center.RADIUS - PosDiff.Y);
             switch (MovingImage?.Name) {
                 case "Cat":
-                    PosCat = e.GetPosition(this);
+                    PosCat = p;
                     break;
                 case "Aya":
-                    PosAya = e.GetPosition(this);
+                    PosAya = p;
                     break;
             }
 
@@ -107,6 +112,7 @@ namespace WPFCanvas
         {
             MovingImage = sender as Image;
             IsMoving = true;
+            PosDiff = e.GetPosition(MovingImage); //사진에서의위치를 불러오는 방법임 this(window)가 아닌 이미지 에서 위치
         }
 
         private void OnMouseUp(object sender, MouseButtonEventArgs e)

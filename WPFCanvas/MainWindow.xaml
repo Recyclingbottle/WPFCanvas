@@ -36,8 +36,32 @@
             Canvas.Top="{ Binding PosCat.Y, Converter={StaticResource Center}  }"
             Width="100"
             Height="100"
+            Panel.ZIndex="1"
             MouseDown="OnMouseDown"
-            MouseUp="OnMouseUp"/>
+            MouseUp="OnMouseUp">
+            <Image.Triggers>
+                <EventTrigger RoutedEvent="Image.MouseDown">
+                    <BeginStoryboard>
+                        <Storyboard>
+                            <DoubleAnimation 
+                                Storyboard.TargetProperty="Opacity"
+                                From="1" To="0.6"
+                                Duration="0:0:0.2"/>
+                        </Storyboard>
+                    </BeginStoryboard>
+                </EventTrigger>
+                <EventTrigger RoutedEvent="Image.MouseUp">
+                    <BeginStoryboard>
+                        <Storyboard>
+                            <DoubleAnimation 
+                                Storyboard.TargetProperty="Opacity"
+                                From="0.6" To="1"
+                                Duration="0:0:0.2"/>
+                        </Storyboard>
+                    </BeginStoryboard>
+                </EventTrigger>
+            </Image.Triggers>
+        </Image>
         <Image
             x:Name="Aya"
             Source="./images/img_l.jpg"
@@ -46,7 +70,31 @@
             Stretch="UniformToFill"
             Width="100"
             Height="100"
+            Panel.ZIndex="2"
             MouseDown="OnMouseDown"
-            MouseUp="OnMouseUp"/>
+            MouseUp="OnMouseUp">
+            <Image.Triggers>
+                <EventTrigger RoutedEvent="Image.MouseDown">
+                    <BeginStoryboard>
+                        <Storyboard>
+                            <DoubleAnimation 
+                                Storyboard.TargetProperty="Opacity"
+                                From="1" To="0.6"
+                                Duration="0:0:0.2"/>
+                        </Storyboard>
+                    </BeginStoryboard>
+                </EventTrigger>
+                <EventTrigger RoutedEvent="Image.MouseUp">
+                    <BeginStoryboard>
+                        <Storyboard>
+                            <DoubleAnimation 
+                                Storyboard.TargetProperty="Opacity"
+                                From="0.6" To="1"
+                                Duration="0:0:0.2"/>
+                        </Storyboard>
+                    </BeginStoryboard>
+                </EventTrigger>
+            </Image.Triggers>
+        </Image>
     </Canvas>
 </Window>
